@@ -162,6 +162,8 @@ public class FirewallVpnService extends VpnService implements Runnable {
 								.getDestinationPort());
 					}
 
+//					Log.d("Tanck","收到Session:" + session);
+
 					session.LastNanoTime = System.nanoTime();
 					session.PacketSent++; //Note order
 

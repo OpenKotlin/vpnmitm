@@ -19,7 +19,7 @@ public class NatSession {
 
 	@Override
 	public String toString() {
-		return String.format("%s/%s:%d packet: %d", RemoteHost, CommonMethods.ipIntToString(RemoteIP),
+		return String.format("远程地址:%s/远程IP:%s, 远程端口:%d packet: %d", RemoteHost, CommonMethods.ipIntToString(RemoteIP),
 				RemotePort & 0xFFFF, PacketSent);
 	}
 }

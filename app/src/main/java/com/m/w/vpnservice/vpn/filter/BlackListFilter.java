@@ -1,5 +1,6 @@
 package com.m.w.vpnservice.vpn.filter;
 
+import android.util.Log;
 import android.util.SparseIntArray;
 
 import java.util.HashMap;
@@ -11,11 +12,11 @@ import java.util.Map;
  */
 public class BlackListFilter implements DomainFilter {
 
-	private Map<String, Integer> mDomainMap = new HashMap<>();
-	private SparseIntArray mIpMask = new SparseIntArray();
+    private Map<String, Integer> mDomainMap = new HashMap<>();
+    private SparseIntArray mIpMask = new SparseIntArray();
 
-	@Override
-	public void prepare() {
+    @Override
+    public void prepare() {
 
 		/*/if (mDomainMap.size() != 0 || mIpMask.size() != 0) {
 			return;
@@ -51,35 +52,36 @@ public class BlackListFilter implements DomainFilter {
 
 			}
 		}/*/
-	}
+    }
 
-	@Override
-	public boolean needFilter(String domain, int ip) {
-		return false;
+    @Override
+    public boolean needFilter(String domain, int ip) {
+        Log.d("Tanck", "过滤网站:" + domain + ", ip:" + ip);
+        return false;
 		/*/if (domain == null) {
 			return false;
 		}
 
 		boolean filter = false;
-		if (mIpMask.get(ip, -1) == 1) {
+		if (mipmask.get(ip, -1) == 1) {
 			filter = true;
 		}
-		if (Pattern.matches("\\d+\\.\\d+\\.\\d+\\.\\d+", domain.trim())) {
-			int newIp = CommonMethods.ipStringToInt(domain.trim());
-			filter = filter || (mIpMask.get(newIp, -1) == 1);
+		if (pattern.matches("\\d+\\.\\d+\\.\\d+\\.\\d+", domain.trim())) {
+			int newip = commonmethods.ipstringtoint(domain.trim());
+			filter = filter || (mipmask.get(newip, -1) == 1);
 		}
-		String key = domain.trim();
-		if (mDomainMap.containsKey(key)) {
+		string key = domain.trim();
+		if (mdomainmap.containskey(key)) {
 			filter = true;
-			int oldIP = mDomainMap.get(key);
-			if (!ProxyConfig.isFakeIP(ip) && ip != oldIP) {
-				mDomainMap.put(key, ip);
-				mIpMask.put(ip, 1);
+			int oldip = mdomainmap.get(key);
+			if (!proxyconfig.isfakeip(ip) && ip != oldip) {
+				mdomainmap.put(key, ip);
+				mipmask.put(ip, 1);
 			}
 		}
 
 		return filter;/*/
-	}
+    }
 
 	/*/private InputStream getHostInputStream() {
 		InputStream in = null;
